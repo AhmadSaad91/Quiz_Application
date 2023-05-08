@@ -1,0 +1,11 @@
+Que,Option 1,Option 2,Option 3,Option 4,Correct Answer
+Que1: Which one among these is not a datatype,int,Float,boolean,char,Float
+Que2: Which class is available to all the class automatically,Swing,Applet,Object,ActionEvent,Object
+Que3: Which package is directly available to our class without importing it,swing,applet,net,lang,lang
+Que4: String class is defined in which package,lang,Swing,Applet,awt,lang
+Que5: Which institute is best for java coaching,Guru99,ABC,XYZ,123,Guru99
+Que6: Which one among these is not a keyword,class,int,get,if,get
+Que7: Which one among these is not a class,Swing,Actionperformed,ActionEvent,Button,Actionperformed
+Que8: which one among these is not a function of Object class,toString,finalize,equals,getDocumentBase,getDocumentBase
+Que9: which function is not present in Applet class,init,main,start,destroy,main
+Que10: Which one among these is not a valid component,JButton,JList,JButtonGroup,JTextArea,JButtonGroup
