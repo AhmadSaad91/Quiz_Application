@@ -11,9 +11,7 @@ public class Controller {
     private FileOperations fileOperations=new FileOperations();
     private ArrayList<Questions> questions=fileOperations.readFile();
     private ArrayList<String> answers=new ArrayList<String>();
-    private int score=0;
     private int current=1;
-    private int pressResultBtn=0;
 
     public void start(JLabel label, JRadioButton option1, JRadioButton option2, JRadioButton option3, JRadioButton option4) {
 
@@ -101,8 +99,7 @@ public class Controller {
 
     public void result(){
 
-        if(pressResultBtn!=0)
-            score=0;
+            int score=0;
 
         for(int i=0;i<answers.size();i++){
             if(answers.get(i).equals(questions.get(i+1).getCorrectAnswer()))
@@ -115,8 +112,6 @@ public class Controller {
                 "Final Score",
                 JOptionPane.INFORMATION_MESSAGE
         );
-
-        pressResultBtn++;
     }
 
 }
