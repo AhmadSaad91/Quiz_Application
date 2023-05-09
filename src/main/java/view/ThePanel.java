@@ -10,6 +10,7 @@ public class ThePanel extends JFrame implements ActionListener {
 
     private javax.swing.ButtonGroup buttonGroup;
     private javax.swing.JButton nextBtn;
+    private javax.swing.JButton resultBtn;
     private javax.swing.JLabel label;
     private javax.swing.JRadioButton option1;
     private javax.swing.JRadioButton option2;
@@ -26,6 +27,7 @@ public class ThePanel extends JFrame implements ActionListener {
         option3 = new javax.swing.JRadioButton();
         option4 = new javax.swing.JRadioButton();
         nextBtn = new javax.swing.JButton();
+        resultBtn = new javax.swing.JButton();
 
         buttonGroup.add(option1);
 
@@ -37,6 +39,10 @@ public class ThePanel extends JFrame implements ActionListener {
 
         nextBtn.setText("Next");
         nextBtn.addActionListener(this);
+
+        resultBtn.setText("Result");
+        resultBtn.setEnabled(false);
+        resultBtn.addActionListener(this);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -50,14 +56,16 @@ public class ThePanel extends JFrame implements ActionListener {
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGap(38, 38, 38)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(option2)
                                                         .addComponent(option1)
+                                                        .addComponent(option2)
                                                         .addComponent(option3)
                                                         .addComponent(option4)))
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGap(86, 86, 86)
-                                                .addComponent(nextBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap(454, Short.MAX_VALUE))
+                                                .addComponent(nextBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(160, 160, 160)
+                                                .addComponent(resultBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(79, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -73,7 +81,9 @@ public class ThePanel extends JFrame implements ActionListener {
                                 .addGap(18, 18, 18)
                                 .addComponent(option4)
                                 .addGap(53, 53, 53)
-                                .addComponent(nextBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(nextBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(resultBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap(61, Short.MAX_VALUE))
         );
 
@@ -91,6 +101,9 @@ public class ThePanel extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        controller.next(label,option1,option2,option3,option4,buttonGroup);
+        if(actionEvent.getSource().equals(nextBtn))
+            controller.next(label,option1,option2,option3,option4,buttonGroup,nextBtn,resultBtn);
+        else if(actionEvent.getSource().equals(resultBtn))
+            controller.result();
     }
 }

@@ -13,6 +13,7 @@ public class Controller {
     private ArrayList<String> answers=new ArrayList<String>();
     private int score=0;
     private int current=1;
+    private int pressResultBtn=0;
 
     public void start(JLabel label, JRadioButton option1, JRadioButton option2, JRadioButton option3, JRadioButton option4) {
 
@@ -23,7 +24,7 @@ public class Controller {
         option4.setText(questions.get(current).getOption4());
     }
     public void next(JLabel label, JRadioButton option1, JRadioButton option2, JRadioButton option3, JRadioButton option4
-            ,ButtonGroup buttonGroup){
+            ,ButtonGroup buttonGroup, JButton nextBtn, JButton resultBtn){
 
         if(current<10) {
             if(option1.isSelected()){
@@ -57,33 +58,36 @@ public class Controller {
                         null,
                         "please select an answer",
                         "warning",
-                        JOptionPane.INFORMATION_MESSAGE
+                        JOptionPane.WARNING_MESSAGE
                 );
             }
 
         }else {
-            if(option1.isSelected())
+            if(option1.isSelected()) {
                 answers.add(option1.getText());
-            else if(option2.isSelected())
+                nextBtn.setEnabled(false);
+                resultBtn.setEnabled(true);
+            }else if(option2.isSelected()) {
                 answers.add(option2.getText());
-            else if(option3.isSelected())
+                nextBtn.setEnabled(false);
+                resultBtn.setEnabled(true);
+            }else if(option3.isSelected()) {
                 answers.add(option3.getText());
-            else if(option4.isSelected())
+                nextBtn.setEnabled(false);
+                resultBtn.setEnabled(true);
+            }else if(option4.isSelected()) {
                 answers.add(option4.getText());
-
-            for(int i=0;i<answers.size();i++){
-                if(answers.get(i).equals(questions.get(i+1).getCorrectAnswer()))
-                    score++;
+                nextBtn.setEnabled(false);
+                resultBtn.setEnabled(true);
+            }else{
+                JOptionPane.showMessageDialog(
+                        null,
+                        "please select an answer",
+                        "warning",
+                        JOptionPane.WARNING_MESSAGE
+                );
             }
 
-            JOptionPane.showMessageDialog(
-                    null,
-                    "Your Score is "+score+" out of 10",
-                    "Final Score",
-                    JOptionPane.INFORMATION_MESSAGE
-            );
-
-            System.exit(0);
         }
     }
 
@@ -93,6 +97,26 @@ public class Controller {
         current++;
         buttonGroup.clearSelection();
         start(label,option1,option2,option3,option4);
+    }
+
+    public void result(){
+
+        if(pressResultBtn!=0)
+            score=0;
+
+        for(int i=0;i<answers.size();i++){
+            if(answers.get(i).equals(questions.get(i+1).getCorrectAnswer()))
+                score++;
+        }
+
+        JOptionPane.showMessageDialog(
+                null,
+                "Your Score is "+score+" out of 10",
+                "Final Score",
+                JOptionPane.INFORMATION_MESSAGE
+        );
+
+        pressResultBtn++;
     }
 
 }
